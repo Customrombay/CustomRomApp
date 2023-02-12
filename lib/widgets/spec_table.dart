@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MainTable extends StatefulWidget {
-  const MainTable({
+class SpecTable extends StatefulWidget {
+  const SpecTable({
     super.key,
     required this.cpuName,
     required this.numberOfCores,
@@ -29,10 +29,10 @@ class MainTable extends StatefulWidget {
   final String screenSize;
 
   @override
-  State<MainTable> createState() => _MainTableState();
+  State<SpecTable> createState() => _SpecTableState();
 }
 
-class _MainTableState extends State<MainTable> {
+class _SpecTableState extends State<SpecTable> {
 
   @override
   Widget build(BuildContext context) {
