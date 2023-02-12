@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:system_info2/system_info2.dart';
 
 import 'widgets/spec_table.dart';
 import 'tools/get_cpu_name.dart';
@@ -52,6 +53,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<AndroidDeviceInfo> androidInfo = DeviceInfoPlugin().androidInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -72,18 +74,29 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: ListView(
           children: [
-            SpecTable(
-              cpuName: getCpuName(),
-              numberOfCores: "OK",
-              cpuArchitecture: "OK",
-              cpuProcess: "OK",
-              cpuVendor: "OK",
-              deviceModel: "OK",
-              deviceManufacturer: "OK",
-              deviceBrand: "OK",
-              boardName: "OK",
-              hardwareName: "OK",
-              screenSize: "OK"
+            FutureBuilder<AndroidDeviceInfo>(
+              future: androidInfo,
+              builder: (BuildContext context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
+                if (snapshot.hasData) {
+                  AndroidDeviceInfo newInfo = snapshot.data!;
+                  return SpecTable(
+                    cpuName: getCpuName(),
+                    numberOfCores: SysInfo.cores.length.toString(),
+                    cpuArchitecture: SysInfo.cores.first.architecture.toString(),
+                    // cpuProcess: SysInfo.,
+                    cpuVendor: SysInfo.cores.first.vendor,
+                    deviceModel: newInfo.model,
+                    deviceManufacturer: newInfo.manufacturer,
+                    deviceBrand: newInfo.brand,
+                    boardName: newInfo.board,
+                    hardwareName: newInfo.hardware,
+                    screenSize: ((newInfo.displayMetrics.sizeInches * 100).round() / 100).toString()
+                  );
+                }
+                else {
+                  return const Text('Calculating answer...');
+                }
+              }
             )
           ],
         )

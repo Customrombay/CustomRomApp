@@ -6,7 +6,7 @@ class SpecTable extends StatefulWidget {
     required this.cpuName,
     required this.numberOfCores,
     required this.cpuArchitecture,
-    required this.cpuProcess,
+    // required this.cpuProcess,
     required this.cpuVendor,
     required this.deviceModel,
     required this.deviceManufacturer,
@@ -19,7 +19,7 @@ class SpecTable extends StatefulWidget {
   final String cpuName;
   final String numberOfCores;
   final String cpuArchitecture;
-  final String cpuProcess;
+  // final String cpuProcess;
   final String cpuVendor;
   final String deviceModel;
   final String deviceManufacturer;
@@ -68,16 +68,16 @@ class _SpecTableState extends State<SpecTable> {
             )
           ]
         ),
-        TableRow(
-          children: [
-            const Text(
-              "CPU process"
-            ),
-            Text(
-              widget.cpuProcess
-            )
-          ]
-        ),
+        // TableRow(
+        //   children: [
+        //     const Text(
+        //       "CPU process"
+        //     ),
+        //     Text(
+        //       widget.cpuProcess
+        //     )
+        //   ]
+        // ),
         TableRow(
           children: [
             const Text(
