@@ -37,7 +37,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                 child: const Center(
                   child:
                     SizedBox(
-                      width: 120,
+                      // width: 120,
                       height: 70,
                       child: Image(
                         image: AssetImage(
