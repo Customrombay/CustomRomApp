@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pages/specs_page.dart';
+import '../pages/main_page.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
 
@@ -82,14 +83,14 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     switch (index) {
       case 0:
         Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const MainPage(),
+        ));
+        break;
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const SpecsPage(),
         ));
         break;
-      // case 1:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => SubPage(themeManageri: widget.themeManageri),
-      //   ));
-      //   break;
       // case 2:
       //   Navigator.of(context).push(MaterialPageRoute(
       //     builder: (context) => PlhPage(themeManageri: widget.themeManageri),
@@ -116,14 +117,14 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   List<Widget> buildList() {
     return [
       buildMenuItem(
-        text: 'Device Specs',
-        icon: Icons.grid_on,
+        text: 'Home',
+        icon: Icons.home,
         onClicked: () => goToPage(context, 0),
       ),
       const SizedBox(height: 16),
       buildMenuItem(
-        text: 'Zastępstwa',
-        icon: Icons.compare_arrows,
+        text: 'Device Specs',
+        icon: Icons.developer_board,
         onClicked: () => goToPage(context, 1),
       ),
       const SizedBox(height: 16),
