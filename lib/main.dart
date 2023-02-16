@@ -3,6 +3,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:system_info2/system_info2.dart';
 
 import 'widgets/spec_table.dart';
+import 'widgets/drawer.dart';
 import 'tools/get_cpu_name.dart';
 
 void main() {
@@ -69,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: NavigationDrawerWidget(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
