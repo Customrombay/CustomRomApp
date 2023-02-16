@@ -29,7 +29,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: const Color(0xff2a328e),
+        color: Colors.black87,
         child: ListView(
           children: <Widget>[
             InkWell(
@@ -70,8 +70,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     const hoverColor = Colors.white70;
 
     return ListTile(
-      leading: Icon(icon, color: color),
-      title: Text(text, style: const TextStyle(color: color)),
+      leading: Icon(icon, color: const Color.fromARGB(255, 65, 219, 134)),
+      title: Text(text, style: const TextStyle(color: Color.fromARGB(255, 65, 219, 134))),
       hoverColor: hoverColor,
       onTap: onClicked,
     );
@@ -128,7 +128,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         onClicked: () => goToPage(context, 1),
       ),
       const SizedBox(height: 16),
-      const Divider(color: Colors.white),
+      const Divider(color: Color.fromARGB(255, 65, 219, 134)),
       const SizedBox(height: 16),
       buildMenuItem(
         text: 'Gazetka szkolna',
@@ -142,7 +142,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         onClicked: () => goToPage(context, 4),
       ),
       const SizedBox(height: 16),
-      const Divider(color: Colors.white),
+      const Divider(color: Color.fromARGB(255, 65, 219, 134)),
       const SizedBox(height: 16),
       buildMenuItem(
         text: 'Ustawienia',
