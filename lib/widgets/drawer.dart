@@ -29,54 +29,28 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         color: const Color(0xff2a328e),
         child: ListView(
           children: <Widget>[
-            buildHeader(
-              urlImage: 'https://www.lo3.gdynia.pl/wp-content/uploads/2021/01/logo.png',
-              name: 'TriApp',
+            InkWell(
+              child: Container(
+                padding: padding.add(const EdgeInsets.symmetric(vertical: 40)),
+                child: const Center(
+                  child:
+                    SizedBox(
+                      width: 120,
+                      height: 70,
+                      child: Image(
+                        image: AssetImage(
+                          "assets/banner.png"
+                        ),
+                      )
+                    ),
+                ),
+              ),
             ),
             Container(
               padding: padding,
               child: Column(
                 children: buildList()
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildHeader({required String urlImage, required String name,}) {
-    return InkWell(
-      child: Container(
-        padding: padding.add(const EdgeInsets.symmetric(vertical: 40)),
-        child: Row(
-          children: [
-            // Container(
-            //   width: 120,
-            //   height: 70,
-            //   color: Colors.white,
-            //   // child: Image.network(
-            //   //   urlImage,
-            //   //   fit: BoxFit.cover,
-            //   // ),
-            //   child: CachedNetworkImage(
-            //     imageUrl: urlImage,
-            //     //fit: BoxFit.fitWidth,
-            //     height: 200,
-            //     width: 400,
-            //     placeholder: (context, url) => loadingPlaceHolder,
-            //     errorWidget: (context, url, error) => const Icon(Icons.error),
-            //   ),
-            // ),
-            SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ],
             ),
           ],
         ),
