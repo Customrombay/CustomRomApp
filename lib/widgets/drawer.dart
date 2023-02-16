@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/specs_page.dart';
+
 class NavigationDrawerWidget extends StatefulWidget {
 
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -63,12 +65,12 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    final color = Colors.white;
-    final hoverColor = Colors.white70;
+    const color = Colors.white;
+    const hoverColor = Colors.white70;
 
     return ListTile(
       leading: Icon(icon, color: color),
-      title: Text(text, style: TextStyle(color: color)),
+      title: Text(text, style: const TextStyle(color: color)),
       hoverColor: hoverColor,
       onTap: onClicked,
     );
@@ -77,44 +79,44 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   void goToPage(BuildContext context, int index) {
     Navigator.of(context).pop();
 
-    // switch (index) {
-    //   case 0:
-    //     Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (context) => PlanPage(title: "Plan Lekcji", themeManageri: widget.themeManageri,),
-    //     ));
-    //     break;
-    //   case 1:
-    //     Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (context) => SubPage(themeManageri: widget.themeManageri),
-    //     ));
-    //     break;
-    //   case 2:
-    //     Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (context) => PlhPage(themeManageri: widget.themeManageri),
-    //     ));
-    //     break;
-    //     case 3:
-    //     Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (context) => NewsPage(themeManageri: widget.themeManageri),
-    //     ));
-    //     break;
-    //     case 4:
-    //     Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (context) => RecentPage(themeManageri: widget.themeManageri),
-    //     ));
-    //     break;
-    //     case 5:
-    //     Navigator.of(context).push(MaterialPageRoute(
-    //       builder: (context) => SettingsPage(themeManageri: widget.themeManageri),
-    //     ));
-    //     break;
-    // }
+    switch (index) {
+      case 0:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const SpecsPage(),
+        ));
+        break;
+      // case 1:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => SubPage(themeManageri: widget.themeManageri),
+      //   ));
+      //   break;
+      // case 2:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => PlhPage(themeManageri: widget.themeManageri),
+      //   ));
+      //   break;
+      //   case 3:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => NewsPage(themeManageri: widget.themeManageri),
+      //   ));
+      //   break;
+      //   case 4:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => RecentPage(themeManageri: widget.themeManageri),
+      //   ));
+      //   break;
+      //   case 5:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => SettingsPage(themeManageri: widget.themeManageri),
+      //   ));
+      //   break;
+    }
   }
 
   List<Widget> buildList() {
     return [
       buildMenuItem(
-        text: 'Plan lekcji',
+        text: 'Device Specs',
         icon: Icons.grid_on,
         onClicked: () => goToPage(context, 0),
       ),
