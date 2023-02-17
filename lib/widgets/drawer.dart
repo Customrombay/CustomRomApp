@@ -29,7 +29,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Colors.black87,
+        // color: Colors.black87,
         child: ListView(
           children: <Widget>[
             InkWell(

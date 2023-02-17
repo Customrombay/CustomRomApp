@@ -17,7 +17,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Colors.green
+        primaryColor: const Color.fromARGB(255, 65, 219, 134),
+        useMaterial3: true,
+        primaryIconTheme: const IconThemeData(
+          color: Color.fromARGB(255, 65, 219, 134)
+        ),
+        // act
       ),
       home: const MainPage()
     );
