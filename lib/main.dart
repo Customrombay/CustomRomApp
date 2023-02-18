@@ -24,6 +24,11 @@ class MyApp extends StatelessWidget {
         ),
         // act
       ),
+      initialRoute: "/MainPage",
+      routes: {
+        "/MainPage":(context) => const MainPage(),
+        "/SpecsPage":(context) => const SpecsPage()
+      },
       home: const MainPage()
     );
   }

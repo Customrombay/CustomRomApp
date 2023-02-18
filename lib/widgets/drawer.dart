@@ -82,14 +82,10 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
 
     switch (index) {
       case 0:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const MainPage(),
-        ));
+        Navigator.of(context).pushReplacementNamed("/MainPage");
         break;
       case 1:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const SpecsPage(),
-        ));
+        Navigator.of(context).pushReplacementNamed("/SpecsPage");
         break;
       // case 2:
       //   Navigator.of(context).push(MaterialPageRoute(
