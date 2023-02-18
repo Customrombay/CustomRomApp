@@ -6,6 +6,7 @@ import '../widgets/spec_table.dart';
 import '../widgets/drawer.dart';
 import '../tools/get_cpu_name.dart';
 import '../tools/extended_codename_creator.dart';
+import '../tools/check_if_supported.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -62,6 +63,11 @@ class _MyHomePageState extends State<MainPage> {
   }
 
   Widget buildDeviceInfo({required AndroidDeviceInfo androidInfo}) {
+    String extendedCodename = extendedCodenameCreator(
+      readCodename: androidInfo.board,
+      readVendor: androidInfo.manufacturer
+    );
+    Future<bool> isSupported = checkIfSupported(extendedCodename: extendedCodename);
     return ListView(
       children: [
         const Center(
@@ -111,16 +117,44 @@ class _MyHomePageState extends State<MainPage> {
         ),
         Center(
           child: Text(
-            extendedCodenameCreator(
-              readCodename: androidInfo.board,
-              readVendor: androidInfo.manufacturer
-            ),
+            extendedCodename,
             style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold
             ),
           ),
         ),
+        FutureBuilder<bool>(
+          future: isSupported,
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (snapshot.hasData) {
+              bool isSupportedNow = snapshot.data!;
+              return Center(
+                child: Text(
+                  isSupportedNow.toString(),
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              );
+            }
+            else if (snapshot.hasError) {
+              return const Center(
+                child: Text(
+                  "Connect to the Internet to check for available ROMs"
+                ),
+              );
+            }
+            else {
+              return const Center(
+                child: Text(
+                  "Loading..."
+                ),
+              );
+            }
+          }
+        )
       ],
     );
   }
