@@ -4,9 +4,11 @@ import 'package:system_info2/system_info2.dart';
 
 import '../widgets/spec_table.dart';
 import '../widgets/drawer.dart';
+import '../widgets/list_of_supported_roms_view.dart';
 import '../tools/get_cpu_name.dart';
 import '../tools/extended_codename_creator.dart';
 import '../tools/check_if_supported.dart';
+import '../tools/get_list_of_supported_roms.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -129,15 +131,7 @@ class _MyHomePageState extends State<MainPage> {
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.hasData) {
               bool isSupportedNow = snapshot.data!;
-              return Center(
-                child: Text(
-                  isSupportedNow.toString(),
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              );
+              return ListOfSupportedRomsView(extendedCodename: extendedCodename);
             }
             else if (snapshot.hasError) {
               return const Center(
