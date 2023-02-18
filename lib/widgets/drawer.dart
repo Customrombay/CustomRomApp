@@ -84,7 +84,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
       case 0:
         Navigator.of(context).pushReplacementNamed("/MainPage");
         break;
-      case 1:
+      case 2:
         Navigator.of(context).pushReplacementNamed("/SpecsPage");
         break;
       // case 2:
@@ -119,31 +119,31 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
       ),
       const SizedBox(height: 16),
       buildMenuItem(
-        text: 'Device Specs',
-        icon: Icons.developer_board,
+        text: 'News',
+        icon: Icons.newspaper,
         onClicked: () => goToPage(context, 1),
       ),
       const SizedBox(height: 16),
       const Divider(color: Color.fromARGB(255, 65, 219, 134)),
       const SizedBox(height: 16),
       buildMenuItem(
-        text: 'Gazetka szkolna',
-        icon: Icons.newspaper,
-        onClicked: () => goToPage(context, 3),
+        text: 'Device specs',
+        icon: Icons.developer_board,
+        onClicked: () => goToPage(context, 2),
       ),
       const SizedBox(height: 16),
       buildMenuItem(
-        text: 'Aktualności',
-        icon: Icons.notifications_outlined,
-        onClicked: () => goToPage(context, 4),
+        text: 'SafetyNet check',
+        icon: Icons.safety_check,
+        onClicked: () => goToPage(context, 3),
       ),
       const SizedBox(height: 16),
       const Divider(color: Color.fromARGB(255, 65, 219, 134)),
       const SizedBox(height: 16),
       buildMenuItem(
-        text: 'Ustawienia',
+        text: 'Settings',
         icon: Icons.settings,
-        onClicked: () => goToPage(context, 5),
+        onClicked: () => goToPage(context, 4),
       ),
       //Text(widget.themeManageri.isDeveloper.toString())
     ];
