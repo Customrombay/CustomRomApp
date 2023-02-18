@@ -5,6 +5,7 @@ import 'package:system_info2/system_info2.dart';
 import '../widgets/spec_table.dart';
 import '../widgets/drawer.dart';
 import '../tools/get_cpu_name.dart';
+import '../tools/extended_codename_creator.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -42,23 +43,85 @@ class _MyHomePageState extends State<MainPage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: ListView(
-          children: [
-            FutureBuilder<AndroidDeviceInfo>(
-              future: androidInfo,
-              builder: (BuildContext context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
-                if (snapshot.hasData) {
-                  AndroidDeviceInfo newInfo = snapshot.data!;
-                  return Text(newInfo.board);
-                }
-                else {
-                  return const Text('Calculating answer...');
-                }
-              }
-            )
-          ],
+        child: FutureBuilder<AndroidDeviceInfo>(
+          future: androidInfo,
+          builder: (BuildContext context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
+            if (snapshot.hasData) {
+              AndroidDeviceInfo newInfo = snapshot.data!;
+              return buildDeviceInfo(
+                androidInfo: newInfo
+              );
+            }
+            else {
+              return const Text('Calculating answer...');
+            }
+          }
         )
-      ),
+      )
+    );
+  }
+
+  Widget buildDeviceInfo({required AndroidDeviceInfo androidInfo}) {
+    return ListView(
+      children: [
+        const Center(
+          child: Text(
+            "This device seems to be:",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+        Center(
+          child: Text(
+            "${androidInfo.manufacturer} ${androidInfo.model}",
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+        const Center(
+          child: Text(
+            "Codename:",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+        Center(
+          child: Text(
+            androidInfo.board,
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+        const Center(
+          child: Text(
+            "Extended codename:",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+        Center(
+          child: Text(
+            extendedCodenameCreator(
+              readCodename: androidInfo.board,
+              readVendor: androidInfo.manufacturer
+            ),
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
