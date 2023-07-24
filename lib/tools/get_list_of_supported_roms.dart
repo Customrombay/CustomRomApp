@@ -11,8 +11,8 @@ List<RomForDevice> getListOfSupportedRoms({required String responseContent}) {
       romSupport: rom["rom-support"],
       romState: rom["rom-state"],
       androidVersion: rom["android-version"].toString(),
-      romWebpage: rom["rom-webpage"],
-      phoneWebpage: rom["phone-webpage"]
+      romWebpage: rom["rom-webpage"] ?? "",
+      phoneWebpage: rom["phone-webpage"] ?? ""
     )];
   }
   return listOfSupportedRoms;
