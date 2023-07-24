@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class RomView extends StatefulWidget {
 
-  const RomView({Key? key, required this.thisRom}) : super(key: key);
+  const RomView({Key? key, required this.rom}) : super(key: key);
 
-  final RomForDevice thisRom;
+  final RomForDevice rom;
 
   @override
   State<RomView> createState() => _RomViewState();
@@ -14,6 +14,6 @@ class RomView extends StatefulWidget {
 class _RomViewState extends State<RomView> {
   @override
   Widget build(BuildContext context) {
-    return Text(widget.thisRom.romName);
+    return Text(widget.rom.romName);
   }
 }

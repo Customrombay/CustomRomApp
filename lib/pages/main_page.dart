@@ -1,14 +1,10 @@
+import 'package:customromapp/tools/support_status.dart';
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:system_info2/system_info2.dart';
 
-import '../widgets/spec_table.dart';
 import '../widgets/drawer.dart';
 import '../widgets/list_of_supported_roms_view.dart';
-import '../tools/get_cpu_name.dart';
-import '../tools/extended_codename_creator.dart';
-import '../tools/check_if_supported.dart';
-import '../tools/get_list_of_supported_roms.dart';
+import '../tools/check_support.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -65,11 +61,11 @@ class _MyHomePageState extends State<MainPage> {
   }
 
   Widget buildDeviceInfo({required AndroidDeviceInfo androidInfo}) {
-    String extendedCodename = extendedCodenameCreator(
+    Future<SupportStatus> supportStatus = checkSupport (
       readCodename: androidInfo.board,
-      readVendor: androidInfo.manufacturer
+      readVendor: androidInfo.manufacturer,
+      readProduct: androidInfo.product
     );
-    Future<bool> isSupported = checkIfSupported(extendedCodename: extendedCodename);
     return ListView(
       children: [
         const Center(
@@ -90,48 +86,54 @@ class _MyHomePageState extends State<MainPage> {
             ),
           ),
         ),
-        const Center(
-          child: Text(
-            "Codename:",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        Center(
-          child: Text(
-            androidInfo.board,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        const Center(
-          child: Text(
-            "Extended codename:",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        Center(
-          child: Text(
-            extendedCodename,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        FutureBuilder<bool>(
-          future: isSupported,
-          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        FutureBuilder<SupportStatus>(
+          future: supportStatus,
+          builder: (BuildContext context, AsyncSnapshot<SupportStatus> snapshot) {
             if (snapshot.hasData) {
-              bool isSupportedNow = snapshot.data!;
-              return ListOfSupportedRomsView(extendedCodename: extendedCodename);
+              String extendedCodename = snapshot.data!.extendedCodename;
+              String codename = extendedCodename.split("-").last;
+              bool isSupported = snapshot.data!.isSupported;
+              return Column(
+                children: [
+                  const Center(
+                    child: Text(
+                      "Codename:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      codename,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      "Extended codename:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      extendedCodename,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  ListOfSupportedRomsView(listOfRoms: snapshot.data!.listOfCustomRoms)
+                ],
+              );
             }
             else if (snapshot.hasError) {
               return const Center(
@@ -148,7 +150,7 @@ class _MyHomePageState extends State<MainPage> {
               );
             }
           }
-        )
+        ),
       ],
     );
   }
