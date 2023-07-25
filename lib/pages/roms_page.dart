@@ -31,10 +31,8 @@ class _RomsPageState extends State<RomsPage> {
           color: Color.fromARGB(255, 65, 219, 134)
         ),
       ),
-      body: Center(
-        child: ListOfSupportedRomsView(
-          listOfRoms: widget.listOfRoms
-        )
+      body: ListOfSupportedRomsView(
+        listOfRoms: widget.listOfRoms
       )
     );
   }
