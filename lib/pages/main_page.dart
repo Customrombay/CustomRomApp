@@ -1,10 +1,11 @@
-import 'package:customromapp/tools/support_status.dart';
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
+import '../pages/roms_page.dart';
 import '../widgets/drawer.dart';
-import '../widgets/list_of_supported_roms_view.dart';
 import '../tools/check_support.dart';
+import '../tools/rom_for_device.dart';
+import '../tools/support_status.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -86,13 +87,17 @@ class _MyHomePageState extends State<MainPage> {
             ),
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
         FutureBuilder<SupportStatus>(
           future: supportStatus,
           builder: (BuildContext context, AsyncSnapshot<SupportStatus> snapshot) {
             if (snapshot.hasData) {
               String extendedCodename = snapshot.data!.extendedCodename;
               String codename = extendedCodename.split("-").last;
-              bool isSupported = snapshot.data!.isSupported;
+              // bool isSupported = snapshot.data!.isSupported;
+              List<RomForDevice> listOfCustomRoms = snapshot.data!.listOfCustomRoms;
               return Column(
                 children: [
                   const Center(
@@ -113,6 +118,9 @@ class _MyHomePageState extends State<MainPage> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   const Center(
                     child: Text(
                       "Extended codename:",
@@ -131,7 +139,68 @@ class _MyHomePageState extends State<MainPage> {
                       ),
                     ),
                   ),
-                  ListOfSupportedRomsView(listOfRoms: snapshot.data!.listOfCustomRoms)
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Center(
+                    child: Text(
+                      "It is supported by:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      listOfCustomRoms.length.toString(),
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      "custom ROMs",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  SizedBox(
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation, secondaryAnimation) => RomsPage(listOfRoms: listOfCustomRoms),
+                            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                              const begin = Offset(1.0, 0.0);
+                              const end = Offset.zero;
+                              const curve = Curves.ease;
+                                  
+                              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                  
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          )
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.arrow_circle_right,
+                        size: 110,
+                        color: Color.fromARGB(255, 65, 219, 134),
+                      ),
+                    ),
+                  )
+                  // ListOfSupportedRomsView(listOfRoms: snapshot.data!.listOfCustomRoms)
                 ],
               );
             }

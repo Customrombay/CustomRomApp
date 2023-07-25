@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../pages/specs_page.dart';
-import '../pages/main_page.dart';
-
 class NavigationDrawerWidget extends StatefulWidget {
 
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -66,7 +63,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    const color = Colors.white;
+    // const color = Colors.white;
     const hoverColor = Colors.white70;
 
     return ListTile(

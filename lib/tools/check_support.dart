@@ -9,7 +9,6 @@ Future<SupportStatus> checkSupport({
   required String readProduct
 }) async {
   String extendedCodename = extendedCodenameCreator(readCodename: readCodename, readVendor: readVendor);
-  print("OK" + readProduct + "OK");
   var response = await http.get(Uri.parse("https://raw.githubusercontent.com/Customrombay/database/main/database/phone_data/$extendedCodename.yaml"));
   if (response.statusCode == 200) {
     return SupportStatus(
