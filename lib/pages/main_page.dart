@@ -1,4 +1,3 @@
-import 'package:customromapp/tools/custom_rom_device.dart';
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
@@ -6,7 +5,9 @@ import '../widgets/drawer.dart';
 import '../widgets/custom_rom_device_image.dart';
 import '../widgets/list_of_supported_roms_view.dart';
 import '../widgets/list_of_supported_recoveries_view.dart';
+import '../widgets/list_of_supported_distributions_view.dart';
 import '../tools/check_support.dart';
+import '../tools/custom_rom_device.dart';
 import '../tools/rom_for_device.dart';
 import '../tools/support_status.dart';
 
@@ -149,7 +150,8 @@ class _MyHomePageState extends State<MainPage> {
                     ),
                   ),
                   ListOfSupportedRomsView(customRomDevice: customRomDevice),
-                  ListOfSupportedRecoveriesView(customRomDevice: customRomDevice)
+                  ListOfSupportedRecoveriesView(customRomDevice: customRomDevice),
+                  ListOfSupportedDistributionsView(customRomDevice: customRomDevice)
                 ],
               );
             }
