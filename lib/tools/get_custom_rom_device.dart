@@ -1,7 +1,9 @@
-import 'package:customromapp/tools/rom_for_device.dart';
 import 'package:yaml/yaml.dart';
 
-List<RomForDevice> getListOfSupportedRoms({required String responseContent}) {
+import 'custom_rom_device.dart';
+import 'rom_for_device.dart';
+
+CustomRomDevice getCustomRomDevice({required String responseContent}) {
   List<RomForDevice> listOfSupportedRoms = [];
   YamlMap ydoc = loadYaml(responseContent);
   YamlList listOfRoms = ydoc["roms"];
@@ -16,5 +18,11 @@ List<RomForDevice> getListOfSupportedRoms({required String responseContent}) {
       phoneWebpage: rom["phone-webpage"] ?? ""
     )];
   }
-  return listOfSupportedRoms;
+  return CustomRomDevice(
+    deviceName: ydoc["device-name"],
+    deviceVendor: ydoc["device-vendor"],
+    deviceModelName: ydoc["device-model-name"],
+    deviceDescription: ydoc["device-description"] ?? "",
+    listOfRoms: listOfSupportedRoms
+  );
 }

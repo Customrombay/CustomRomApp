@@ -1,7 +1,8 @@
-import 'package:customromapp/tools/extended_codename_creator.dart';
-import 'package:customromapp/tools/get_list_of_supported_roms.dart';
-import 'package:customromapp/tools/support_status.dart';
 import 'package:http/http.dart' as http;
+
+import 'support_status.dart';
+import 'extended_codename_creator.dart';
+import 'get_custom_rom_device.dart';
 
 Future<SupportStatus> checkSupport({
   required String readCodename,
@@ -14,7 +15,7 @@ Future<SupportStatus> checkSupport({
     return SupportStatus(
       isSupported: true,
       extendedCodename: extendedCodename,
-      listOfCustomRoms: getListOfSupportedRoms(responseContent: response.body)
+      customRomDevice: getCustomRomDevice(responseContent: response.body)
     );
   }
   if (RegExp(r'.+_.+').hasMatch(readProduct)) {
@@ -25,7 +26,7 @@ Future<SupportStatus> checkSupport({
       return SupportStatus(
         isSupported: true,
         extendedCodename: newExtendedCodename,
-        listOfCustomRoms: getListOfSupportedRoms(responseContent: newResponse.body)
+        customRomDevice: getCustomRomDevice(responseContent: newResponse.body)
       );
     }
   }
@@ -36,13 +37,12 @@ Future<SupportStatus> checkSupport({
       return SupportStatus(
         isSupported: true,
         extendedCodename: newExtendedCodename,
-        listOfCustomRoms: getListOfSupportedRoms(responseContent: newResponse.body)
+        customRomDevice: getCustomRomDevice(responseContent: newResponse.body)
       );
     }
   }
   return SupportStatus(
     isSupported: false,
     extendedCodename: extendedCodename,
-    listOfCustomRoms: []
   );
 }

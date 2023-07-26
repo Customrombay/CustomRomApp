@@ -1,13 +1,13 @@
-import 'package:customromapp/tools/rom_for_device.dart';
+import 'custom_rom_device.dart';
 
 class SupportStatus {
   SupportStatus({
     required this.isSupported,
     required this.extendedCodename,
-    required this.listOfCustomRoms
+    this.customRomDevice
   });
 
   bool isSupported;
   String extendedCodename;
-  List<RomForDevice> listOfCustomRoms;
+  CustomRomDevice? customRomDevice;
 }

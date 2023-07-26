@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/list_of_supported_roms_view.dart';
-import '../tools/rom_for_device.dart';
+import '../tools/custom_rom_device.dart';
 
-class RomsPage extends StatefulWidget {
-  const RomsPage({
+class DevicePage extends StatefulWidget {
+  const DevicePage({
     super.key,
-    required this.listOfRoms
+    required this.customRomDevice
   });
 
-  final List<RomForDevice> listOfRoms;
+  final CustomRomDevice customRomDevice;
 
   @override
-  State<RomsPage> createState() => _RomsPageState();
+  State<DevicePage> createState() => _DevicePageState();
 }
 
-class _RomsPageState extends State<RomsPage> {
+class _DevicePageState extends State<DevicePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class _RomsPageState extends State<RomsPage> {
         ),
       ),
       body: ListOfSupportedRomsView(
-        listOfRoms: widget.listOfRoms
-      )
+        customRomDevice: widget.customRomDevice
+      ),
     );
   }
 }

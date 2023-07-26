@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
-import '../pages/roms_page.dart';
+import '../pages/device_page.dart';
 import '../widgets/drawer.dart';
 import '../tools/check_support.dart';
 import '../tools/rom_for_device.dart';
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MainPage> {
               String extendedCodename = snapshot.data!.extendedCodename;
               String codename = extendedCodename.split("-").last;
               // bool isSupported = snapshot.data!.isSupported;
-              List<RomForDevice> listOfCustomRoms = snapshot.data!.listOfCustomRoms;
+              List<RomForDevice> listOfCustomRoms = snapshot.data!.customRomDevice?.listOfRoms ?? [];
               return Column(
                 children: [
                   const Center(
@@ -177,7 +177,7 @@ class _MyHomePageState extends State<MainPage> {
                       onPressed: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                            pageBuilder: (context, animation, secondaryAnimation) => RomsPage(listOfRoms: listOfCustomRoms),
+                            pageBuilder: (context, animation, secondaryAnimation) => DevicePage(customRomDevice: snapshot.data!.customRomDevice!),
                             transitionsBuilder: (context, animation, secondaryAnimation, child) {
                               const begin = Offset(1.0, 0.0);
                               const end = Offset.zero;
