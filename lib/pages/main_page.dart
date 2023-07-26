@@ -5,6 +5,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import '../widgets/drawer.dart';
 import '../widgets/custom_rom_device_image.dart';
 import '../widgets/list_of_supported_roms_view.dart';
+import '../widgets/list_of_supported_recoveries_view.dart';
 import '../tools/check_support.dart';
 import '../tools/rom_for_device.dart';
 import '../tools/support_status.dart';
@@ -71,27 +72,6 @@ class _MyHomePageState extends State<MainPage> {
     );
     return ListView(
       children: [
-        // const Center(
-        //   child: Text(
-        //     "This device seems to be:",
-        //     style: TextStyle(
-        //       fontSize: 18,
-        //       fontWeight: FontWeight.bold
-        //     ),
-        //   ),
-        // ),
-        // Center(
-        //   child: Text(
-        //     "${androidInfo.manufacturer} ${androidInfo.model}",
-        //     style: const TextStyle(
-        //       fontSize: 22,
-        //       fontWeight: FontWeight.bold
-        //     ),
-        //   ),
-        // ),
-        // const SizedBox(
-        //   height: 10,
-        // ),
         FutureBuilder<SupportStatus>(
           future: supportStatus,
           builder: (BuildContext context, AsyncSnapshot<SupportStatus> snapshot) {
@@ -168,7 +148,8 @@ class _MyHomePageState extends State<MainPage> {
                       ),
                     ),
                   ),
-                  ListOfSupportedRomsView(customRomDevice: customRomDevice)
+                  ListOfSupportedRomsView(customRomDevice: customRomDevice),
+                  ListOfSupportedRecoveriesView(customRomDevice: customRomDevice)
                 ],
               );
             }

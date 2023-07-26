@@ -1,4 +1,5 @@
 import 'rom_for_device.dart';
+import 'recovery_for_device.dart';
 
 class CustomRomDevice {
   CustomRomDevice({
@@ -7,7 +8,7 @@ class CustomRomDevice {
     required this.deviceModelName,
     required this.deviceDescription,
     required this.listOfRoms,
-    // required this.listOfRecoveries,
+    this.listOfRecoveries = const [],
     // required this.listOfLinuxDistributions,
   });
 
@@ -16,4 +17,5 @@ class CustomRomDevice {
   String deviceModelName = "";
   String deviceDescription = "";
   List<RomForDevice> listOfRoms = [];
+  List<RecoveryForDevice> listOfRecoveries;
 }
