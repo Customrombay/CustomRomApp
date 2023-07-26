@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
         primaryIconTheme: const IconThemeData(
           color: Color.fromARGB(255, 65, 219, 134)
         ),
+        dividerColor: const Color.fromARGB(255, 65, 219, 134),
+        expansionTileTheme: const ExpansionTileThemeData(iconColor: Color.fromARGB(255, 65, 219, 134))
         // act
       ),
       initialRoute: "/MainPage",
