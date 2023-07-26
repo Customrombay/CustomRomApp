@@ -11,17 +11,6 @@ class NavigationDrawerWidget extends StatefulWidget {
 class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
 
-  // Future<void> _changeIsDev() async {
-  //   final SharedPreferences prefs = await _prefs;
-  //   final bool isDev = !(prefs.getBool('isDev') ?? false);
-
-  //   setState(() {
-  //     _isDev = prefs.setBool('isDev', isDev).then((bool success) {
-  //       return isDev;
-  //     });
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -84,26 +73,9 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
       case 2:
         Navigator.of(context).pushReplacementNamed("/SpecsPage");
         break;
-      // case 2:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => PlhPage(themeManageri: widget.themeManageri),
-      //   ));
-      //   break;
-      //   case 3:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => NewsPage(themeManageri: widget.themeManageri),
-      //   ));
-      //   break;
-      //   case 4:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => RecentPage(themeManageri: widget.themeManageri),
-      //   ));
-      //   break;
-      //   case 5:
-      //   Navigator.of(context).push(MaterialPageRoute(
-      //     builder: (context) => SettingsPage(themeManageri: widget.themeManageri),
-      //   ));
-      //   break;
+      case 4:
+        Navigator.of(context).pushReplacementNamed("/SettingsPage");
+        break;
     }
   }
 
