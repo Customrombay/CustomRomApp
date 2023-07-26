@@ -36,7 +36,11 @@ class CustomRomDeviceImage extends StatelessWidget{
             height: 300,
           );
         }
-        return const Text("OK");
+        return const SizedBox(
+          width: 300,
+          height: 300,
+          child: CircularProgressIndicator(),
+        );
       }
     );
   }
