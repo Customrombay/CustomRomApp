@@ -1,8 +1,10 @@
+import 'package:customromapp/tools/custom_rom_device.dart';
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
-import '../pages/device_page.dart';
 import '../widgets/drawer.dart';
+import '../widgets/custom_rom_device_image.dart';
+import '../widgets/list_of_supported_roms_view.dart';
 import '../tools/check_support.dart';
 import '../tools/rom_for_device.dart';
 import '../tools/support_status.dart';
@@ -69,54 +71,51 @@ class _MyHomePageState extends State<MainPage> {
     );
     return ListView(
       children: [
-        const Center(
-          child: Text(
-            "This device seems to be:",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        Center(
-          child: Text(
-            "${androidInfo.manufacturer} ${androidInfo.model}",
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
+        // const Center(
+        //   child: Text(
+        //     "This device seems to be:",
+        //     style: TextStyle(
+        //       fontSize: 18,
+        //       fontWeight: FontWeight.bold
+        //     ),
+        //   ),
+        // ),
+        // Center(
+        //   child: Text(
+        //     "${androidInfo.manufacturer} ${androidInfo.model}",
+        //     style: const TextStyle(
+        //       fontSize: 22,
+        //       fontWeight: FontWeight.bold
+        //     ),
+        //   ),
+        // ),
+        // const SizedBox(
+        //   height: 10,
+        // ),
         FutureBuilder<SupportStatus>(
           future: supportStatus,
           builder: (BuildContext context, AsyncSnapshot<SupportStatus> snapshot) {
             if (snapshot.hasData) {
               String extendedCodename = snapshot.data!.extendedCodename;
-              String codename = extendedCodename.split("-").last;
+              // String codename = extendedCodename.split("-").last;
+              CustomRomDevice? customRomDevice = snapshot.data!.customRomDevice;
               // bool isSupported = snapshot.data!.isSupported;
-              List<RomForDevice> listOfCustomRoms = snapshot.data!.customRomDevice?.listOfRoms ?? [];
+              List<RomForDevice> listOfCustomRoms = customRomDevice?.listOfRoms ?? [];
               return Column(
                 children: [
-                  const Center(
-                    child: Text(
-                      "Codename:",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
+                  CustomRomDeviceImage(
+                    extendedCodename: extendedCodename
                   ),
-                  Center(
-                    child: Text(
-                      codename,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
-                      ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "${customRomDevice!.deviceVendor} ${customRomDevice.deviceModelName}".replaceAll("/ ", "/\n"),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
                     ),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 10,
@@ -144,7 +143,7 @@ class _MyHomePageState extends State<MainPage> {
                   ),
                   const Center(
                     child: Text(
-                      "It is supported by:",
+                      "It is supported by",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold
@@ -169,38 +168,7 @@ class _MyHomePageState extends State<MainPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  SizedBox(
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation, secondaryAnimation) => DevicePage(customRomDevice: snapshot.data!.customRomDevice!),
-                            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                              const begin = Offset(1.0, 0.0);
-                              const end = Offset.zero;
-                              const curve = Curves.ease;
-                                  
-                              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                                  
-                              return SlideTransition(
-                                position: animation.drive(tween),
-                                child: child,
-                              );
-                            },
-                          )
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.arrow_circle_right,
-                        size: 110,
-                        color: Color.fromARGB(255, 65, 219, 134),
-                      ),
-                    ),
-                  )
-                  // ListOfSupportedRomsView(listOfRoms: snapshot.data!.listOfCustomRoms)
+                  ListOfSupportedRomsView(customRomDevice: customRomDevice)
                 ],
               );
             }
