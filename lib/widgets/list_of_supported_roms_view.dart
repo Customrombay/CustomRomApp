@@ -18,21 +18,37 @@ class ListOfSupportedRomsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: customRomDevice.listOfRoms.length,
+      itemCount: customRomDevice.listOfRoms.length + 3,
       itemBuilder: (context, index) {
         if (index == 0) {
-          // return const Image(
-          //   image: AssetImage('assets/phone.png'),
-          //   height: 300,
-          // );
-          return CustomRomDeviceImage(extendedCodename: extendedCodenameCreator(readCodename: customRomDevice.deviceName, readVendor: customRomDevice.deviceVendor));
+          return CustomRomDeviceImage(
+            extendedCodename: extendedCodenameCreator(
+              readCodename: customRomDevice.deviceName,
+              readVendor: customRomDevice.deviceVendor
+            )
+          );
+        }
+        else if (index == 1) {
+          return const SizedBox(
+            height: 20,
+          );
+        }
+        else if (index == 2) {
+          return Text(
+            "${customRomDevice.deviceVendor} ${customRomDevice.deviceModelName}".replaceAll("/ ", "/\n"),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20
+            ),
+            textAlign: TextAlign.center,
+          );
         }
         else {
           return ListTile(
-            title: Text(customRomDevice.listOfRoms[index - 1].romName),
-            subtitle: Text(romDataGenerator(rom: customRomDevice.listOfRoms[index - 1])),
+            title: Text(customRomDevice.listOfRoms[index - 3].romName),
+            subtitle: Text(romDataGenerator(rom: customRomDevice.listOfRoms[index - 3])),
             onTap: () {
-              Uri? url = Uri.tryParse(customRomDevice.listOfRoms[index - 1].phoneWebpage);
+              Uri? url = Uri.tryParse(customRomDevice.listOfRoms[index - 3].phoneWebpage);
               if (url?.hasAbsolutePath ?? false) {
                 launchUrl(
                   url!,
