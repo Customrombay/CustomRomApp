@@ -45,8 +45,11 @@ class _NewsPageState extends State<NewsPage> {
               List<Post> listOfPosts = list.map((element) => Post(title: element["post_title"], path: element["post_path"], image: element["post_image"], published: dateTimeFromString(element["post_published"]))).toList();
               return Center(
                 child: ListView.builder(
-                  itemCount: listOfPosts.length,
+                  itemCount: listOfPosts.length + 1,
                   itemBuilder: (context, index) {
+                    if (index == listOfPosts.length) {
+                      return const SizedBox(height: 30);
+                    }
                     return PostView(post: listOfPosts[index]);
                   }
                 )

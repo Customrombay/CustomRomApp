@@ -83,6 +83,9 @@ class _PostPageState extends State<PostPage> {
                   return const Text("Loading...");
                 }
               ),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           )
         ),
