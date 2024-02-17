@@ -38,10 +38,11 @@ dependencies:
   device_info_plus: ^8.1.0
   system_info2: ^3.0.1
   http: ^0.13.5
-  yaml: ^3.1.1
+  yaml: ^3.1.2
   url_launcher: ^6.1.12
   go_router: ^13.2.0
   flutter_widget_from_html: ^0.14.11
+  markdown: ^7.2.1
 
 dev_dependencies:
   flutter_test:

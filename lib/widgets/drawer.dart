@@ -72,7 +72,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         context.go("/");
         break;
       case 1:
-        context.go("/PostPage");
+        context.go("/NewsPage");
         break;
       case 2:
         context.go("/SpecsPage");

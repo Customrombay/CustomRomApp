@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'pages/specs_page.dart';
 import 'pages/main_page.dart';
 import 'pages/settings_page.dart';
-import 'pages/post_page.dart';
 import 'pages/license_page.dart';
 import 'pages/about_page.dart';
+import 'pages/news_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,16 +28,16 @@ final _router = GoRouter(
       builder: (context, state) => const SpecsPage(),
     ),
     GoRoute(
-      path: "/PostPage",
-      builder: (context, state) => const PostPage(),
-    ),
-    GoRoute(
       path: "/LicensePage",
       builder: (context, state) => const CustomLicensePage(),
     ),
     GoRoute(
       path: "/AboutPage",
       builder: (context, state) => const AboutPage(),
+    ),
+    GoRoute(
+      path: "/NewsPage",
+      builder: (context, state) => const NewsPage(),
     ),
   ],
 );
