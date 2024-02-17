@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'spec_table_entry.dart';
+
 class SpecTable extends StatefulWidget {
   const SpecTable({
     super.key,
@@ -36,119 +38,108 @@ class _SpecTableState extends State<SpecTable> {
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      children: [
-        TableRow(
-          children: [
-            const Text(
-              "CPU model"
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        children: [
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Column(
+                children: [
+                  SpecTableEntry(
+                    leftValue: "CPU model",
+                    rightValue: widget.cpuName
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "Number of cores",
+                    rightValue: widget.numberOfCores
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "CPU architecture",
+                    rightValue: widget.cpuArchitecture
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "CPU vendor",
+                    rightValue: widget.cpuVendor
+                  ),
+                ],
+              ),
             ),
-            Text(
-              widget.cpuName
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Number of cores"
+          ),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Column(
+                children: [
+                  SpecTableEntry(
+                    leftValue: "Device model",
+                    rightValue: widget.deviceModel
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "Manufacturer",
+                    rightValue: widget.deviceManufacturer
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "Brand",
+                    rightValue: widget.deviceBrand
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "Board",
+                    rightValue: widget.boardName
+                  ),
+                  const Divider(
+                    height: 10,
+                    color: Color.fromARGB(255, 65, 219, 134),
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SpecTableEntry(
+                    leftValue: "Hardware",
+                    rightValue: widget.hardwareName
+                  ),
+                ],
+              ),
             ),
-            Text(
-              widget.numberOfCores
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "CPU architecture"
-            ),
-            Text(
-              widget.cpuArchitecture
-            )
-          ]
-        ),
-        // TableRow(
-        //   children: [
-        //     const Text(
-        //       "CPU process"
-        //     ),
-        //     Text(
-        //       widget.cpuProcess
-        //     )
-        //   ]
-        // ),
-        TableRow(
-          children: [
-            const Text(
-              "CPU vendor"
-            ),
-            Text(
-              widget.cpuVendor
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Device model"
-            ),
-            Text(
-              widget.deviceModel
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Manufacturer"
-            ),
-            Text(
-              widget.deviceManufacturer
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Brand"
-            ),
-            Text(
-              widget.deviceBrand
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Board"
-            ),
-            Text(
-              widget.boardName
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Hardware"
-            ),
-            Text(
-              widget.hardwareName
-            )
-          ]
-        ),
-        TableRow(
-          children: [
-            const Text(
-              "Screen size"
-            ),
-            Text(
-              widget.screenSize
-            )
-          ]
-        )
-      ],
+          ),
+        ],
+      ),
     );
   }
 }
