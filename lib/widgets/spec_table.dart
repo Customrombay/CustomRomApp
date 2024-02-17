@@ -44,7 +44,7 @@ class _SpecTableState extends State<SpecTable> {
         children: [
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: Column(
                 children: [
                   SpecTableEntry(
@@ -87,7 +87,7 @@ class _SpecTableState extends State<SpecTable> {
           ),
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: Column(
                 children: [
                   SpecTableEntry(
