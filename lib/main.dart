@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'pages/specs_page.dart';
 import 'pages/main_page.dart';
 import 'pages/settings_page.dart';
+import 'pages/post_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/SpecsPage',
       builder: (context, state) => const SpecsPage(),
+    ),
+    GoRoute(
+      path: "/PostPage",
+      builder: (context, state) => const PostPage(),
     ),
   ],
 );
