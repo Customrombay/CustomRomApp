@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 import '../tools/build_url.dart';
 import '../entities/post.dart';
@@ -65,6 +66,17 @@ class _PostPageState extends State<PostPage> {
                           );
                         }
                         return null;
+                      },
+
+                      onTapUrl: (url) {
+                        Uri? uri = Uri.tryParse(url);
+                        if (uri?.hasAbsolutePath ?? false) {
+                          launchUrl(
+                            uri!,
+                            mode: LaunchMode.externalApplication
+                          );
+                        }
+                        return true;
                       },
                     );
                   }
