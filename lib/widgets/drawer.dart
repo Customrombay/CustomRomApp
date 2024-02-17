@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
 
@@ -68,13 +69,13 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
 
     switch (index) {
       case 0:
-        Navigator.of(context).pushReplacementNamed("/MainPage");
+        context.go("/");
         break;
       case 2:
-        Navigator.of(context).pushReplacementNamed("/SpecsPage");
+        context.go("/SpecsPage");
         break;
       case 4:
-        Navigator.of(context).pushReplacementNamed("/SettingsPage");
+      context.go("/SettingsPage");
         break;
     }
   }
