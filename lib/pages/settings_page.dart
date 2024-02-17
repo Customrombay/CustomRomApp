@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/drawer.dart';
 
@@ -26,13 +27,33 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
       drawer: const NavigationDrawerWidget(),
-      body: Center(
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: ListView(
-          children: const [
-            ListTile(
-              title: Text("OK"),
-            )
-          ],
+          children: [
+            Card(
+              child: Column(
+                children: [
+                  ListTile(
+                    title: const Text("Open source licenses"),
+                    subtitle: const Text("Show information about open source compenents"),
+                    leading: const Icon(Icons.text_snippet),
+                    onTap: () {
+                      context.push("/LicensePage");
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("About Custom ROM App"),
+                    subtitle: const Text("See information about this app"),
+                    leading: const Icon(Icons.info),
+                    onTap: () {
+                      context.push("/AboutPage");
+                    }
+                  )
+                ]
+              ),
+            ),
+          ]
         )
       ),
     );
